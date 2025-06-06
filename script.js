@@ -1,6 +1,6 @@
 
   const API_KEY = 'AIzaSyBy-P4a2jedGeHRdporrdQ2vET7V09YwAI'; // Ganti API key kamu
-  let queue = [];
+  let antri = [];
   let currentVideo = null;
 
 
@@ -129,7 +129,7 @@ window.addEventListener('message', (event) => {
   }
 
   function addToQueue(movie) {
-    queue.push(movie);
+    antri.push(movie);
     updateQueueDisplay();
     if(!currentVideo) playNext();
 saveQueueToStorage();
@@ -138,7 +138,7 @@ saveQueueToStorage();
   function updateQueueDisplay() {
     const list = document.getElementById('queueList');
     list.innerHTML = '';
-    queue.forEach((item, index) => {
+    antri.forEach((item, index) => {
       const li = document.createElement('li');
       li.textContent = `${index + 1}. ${item.title}`;
       li.setAttribute('draggable', 'true');
@@ -148,7 +148,7 @@ saveQueueToStorage();
       delBtn.textContent = '✖';
       delBtn.onclick = (e) => {
         e.stopPropagation();
-        queue.splice(index, 1);
+        antri.splice(index, 1);
         updateQueueDisplay();
       };
       li.appendChild(delBtn);
@@ -182,12 +182,12 @@ saveQueueToStorage();
   }
 
   function playNext() {
-    if(queue.length === 0){
+    if(antri.length === 0){
       currentVideo = null;
       document.getElementById('player').innerHTML = '<p style="color:#888;">Antrean kosong.</p>';
       return;
     }
-    currentVideo = queue.shift();
+    currentVideo = antri.shift();
     updateQueueDisplay();
     loadVideo(currentVideo.videoId);
   }
@@ -311,22 +311,22 @@ if (tvWindow && !tvWindow.closed) {
     const newQueue = [];
     listItems.forEach(li => {
       const idx = +li.dataset.index;
-      newQueue.push(queue[idx]);
+      newQueue.push(antri[idx]);
     });
-    queue = newQueue;
+    antri = newQueue;
     updateQueueDisplay();
 saveQueueToStorage();
   }
 
 function saveQueueToStorage() {
-  localStorage.setItem('movieQueue', JSON.stringify(queue));
+  localStorage.setItem('movieQueue', JSON.stringify(antri));
 }
 
 function loadQueueFromStorage() {
   const saved = localStorage.getItem('movieQueue');
   if (saved) {
     try {
-      queue = JSON.parse(saved);
+      antri = JSON.parse(saved);
       updateQueueDisplay();
     } catch(e) {
       console.error('Gagal memuat antrean:', e);
