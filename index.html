@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Karaoke Rumahan - Drag & Drop Antrean + Height Balance</title>
+<link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+
+<header>
+  <h1>🎤 Karaoke wusofi</h1>
+  <button id="themeToggleBtn" onclick="toggleTheme()">🌙 / ☀️</button>
+</header>
+
+<main>
+  <section class="left-panel">
+    <div id="player"></div>
+  </section>
+
+  <section class="right-panel">
+    <div id="searchContainer">
+      <input id="searchInput" type="text" placeholder="Ketik judul lagu atau link YouTube..." autocomplete="off" />
+      <button id="searchBtn" onclick="handleSearchOrAdd()">Cari / Tambah</button>
+    </div>
+
+    <div id="searchResults"></div>
+
+    <h2>Antrean Lagu</h2>
+    <ul id="queueList"></ul>
+
+    <div id="bottomButtons">
+      <button onclick="playNext()">▶️ Putar Lagu Berikutnya</button>
+      <button onclick="openTVWindow()">🖥️ Mode TV</button>
+
+    </div>
+  </section>
+</main>
+
+<script src="script.js">
+</script>
+
+</body>
+</html>

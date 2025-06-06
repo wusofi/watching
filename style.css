@@ -1,0 +1,191 @@
+<style>
+  * {
+    box-sizing: border-box;
+  }
+  body, html {
+    margin: 0; padding: 0;
+    height: 100vh;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    transition: background 0.3s, color 0.3s;
+  }
+  body.light-mode {
+    background: #fff;
+    color: #000;
+  }
+  body.dark-mode {
+    background: #121212;
+    color: #eee;
+  }
+  main {
+    display: flex;
+    height: 95vh;
+    overflow: hidden;
+  }
+  .left-panel {
+    flex-basis: 75vw;
+    height: 95vh;
+    background: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  #player iframe {
+    width: 75vw;
+    height: 95vh;
+    border: none;
+  }
+  .right-panel {
+    flex-basis: 25vw;
+    height: 85vh;
+    padding: 15px 20px;
+    overflow: hidden;
+    background-color: inherit;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+  }
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  header h1 {
+    font-size: 1.5rem;
+    margin: 0;
+  }
+  button {
+    cursor: pointer;
+    font-size: 1rem;
+    padding: 6px 12px;
+    margin-left: 8px;
+    border: none;
+    border-radius: 4px;
+    background-color: #2196f3;
+    color: white;
+    transition: background-color 0.2s ease;
+  }
+  button:hover {
+    background-color: #1976d2;
+  }
+  #searchContainer {
+    display: flex;
+    margin-bottom: 8px;
+  }
+  #searchInput {
+    flex-grow: 1;
+    padding: 8px 10px;
+    font-size: 1rem;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+  }
+  #searchBtn {
+    margin-left: 8px;
+    padding: 8px 16px;
+  }
+
+  /* Sekarang hasil pencarian dan antrean dibuat 2 kotak dengan tinggi seimbang */
+  #searchResults {
+    height: 45vh;
+    overflow-y: auto;
+    margin-bottom: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 6px;
+    background-color: rgba(0,0,0,0.03);
+  }
+  body.dark-mode #searchResults {
+    background-color: rgba(255,255,255,0.1);
+    border-color: #555;
+  }
+  .result-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+    padding: 6px;
+    border-radius: 4px;
+    background-color: rgba(0,0,0,0.05);
+  }
+  body.dark-mode .result-item {
+    background-color: rgba(255,255,255,0.1);
+  }
+  .result-item img {
+    width: 80px;
+    height: 45px;
+    object-fit: cover;
+    margin-right: 10px;
+    flex-shrink: 0;
+    cursor: pointer;
+    border-radius: 3px;
+  }
+  .result-info {
+    flex-grow: 1;
+    font-size: 0.9rem;
+    line-height: 1.2rem;
+    user-select: none;
+  }
+  .result-item button {
+    background-color: #4caf50;
+  }
+  .result-item button:hover {
+    background-color: #388e3c;
+  }
+
+  /* Antrean dan headernya */
+  h2 {
+    margin: 0 0 6px 0;
+    font-weight: 600;
+  }
+  #queueList {
+    height: 45vh;
+    overflow-y: auto;
+    padding-left: 0;
+    list-style: none;
+    margin: 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: rgba(0,0,0,0.03);
+  }
+  body.dark-mode #queueList {
+    background-color: rgba(255,255,255,0.1);
+    border-color: #555;
+  }
+  #queueList li {
+    padding: 5px 8px;
+    margin: 3px 5px;
+    background-color: rgba(0,0,0,0.05);
+    border-radius: 4px;
+    font-size: 0.9rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: grab;
+  }
+  body.dark-mode #queueList li {
+    background-color: rgba(255,255,255,0.15);
+  }
+  #queueList li.dragging {
+    opacity: 0.5;
+  }
+  #queueList li button {
+    background-color: transparent;
+    border: none;
+    font-size: 1.1rem;
+    color: #d32f2f;
+    cursor: pointer;
+    padding: 0 6px;
+  }
+  #queueList li button:hover {
+    color: #b71c1c;
+  }
+
+  #bottomButtons {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+  #bottomButtons button {
+    width: 100%;
+  }
+</style>
