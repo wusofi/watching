@@ -80,11 +80,11 @@ window.addEventListener('message', (event) => {
         alert('Gagal mengambil data video dari link.');
       }
     } else {
-      searchSongs(input);
+      searchmovies(input);
     }
   }
 
-  async function searchSongs(query) {
+  async function searchmovies(query) {
     try {
       const res = await fetch(`https://www.googleapis.com/youtube/v3/search?part=snippet&type=video&maxResults=20&q=${encodeURIComponent(query + " karaoke")}&key=${API_KEY}`);
       const data = await res.json();
@@ -128,8 +128,8 @@ window.addEventListener('message', (event) => {
     });
   }
 
-  function addToQueue(song) {
-    queue.push(song);
+  function addToQueue(movie) {
+    queue.push(movie);
     updateQueueDisplay();
     if(!currentVideo) playNext();
 saveQueueToStorage();
@@ -319,11 +319,11 @@ saveQueueToStorage();
   }
 
 function saveQueueToStorage() {
-  localStorage.setItem('songQueue', JSON.stringify(queue));
+  localStorage.setItem('movieQueue', JSON.stringify(queue));
 }
 
 function loadQueueFromStorage() {
-  const saved = localStorage.getItem('songQueue');
+  const saved = localStorage.getItem('movieQueue');
   if (saved) {
     try {
       queue = JSON.parse(saved);
