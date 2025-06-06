@@ -54,8 +54,8 @@ window.addEventListener('message', (event) => {
     }
   }
   function applySavedTheme() {
-    const saved = localStorage.getItem('theme') || 'light';
-    document.body.classList.add(saved + '-mode');
+    const simpan = localStorage.getItem('theme') || 'light';
+    document.body.classList.add(simpan + '-mode');
   }
   applySavedTheme();
 
@@ -323,10 +323,10 @@ function saveQueueToStorage() {
 }
 
 function loadQueueFromStorage() {
-  const saved = localStorage.getItem('movieQueue');
-  if (saved) {
+  const simpan = localStorage.getItem('movieQueue');
+  if (simpan) {
     try {
-      antri = JSON.parse(saved);
+      antri = JSON.parse(simpan);
       updateQueueDisplay();
     } catch(e) {
       console.error('Gagal memuat antrean:', e);
