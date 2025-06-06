@@ -319,11 +319,17 @@ saveQueueToStorage();
   }
 
 function saveQueueToStorage() {
-  localStorage.setItem('movieQueue', JSON.stringify(antri));
+//  localStorage.setItem('movieQueue', JSON.stringify(antri));
+  const projectKey = location.pathname.split("/")[1] || "default";
+localStorage.setItem(`${projectKey}_movieQueue`, JSON.stringify(antri));
+
 }
 
 function loadQueueFromStorage() {
-  const simpan = localStorage.getItem('movieQueue');
+  const projectKey = location.pathname.split("/")[1] || "default";
+const simpan = localStorage.getItem(`${projectKey}_movieQueue`);
+
+//  const simpan = localStorage.getItem('movieQueue');
   if (simpan) {
     try {
       antri = JSON.parse(simpan);
