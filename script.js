@@ -86,7 +86,12 @@ window.addEventListener('message', (event) => {
 
   async function searchmovies(query) {
     try {
-      const res = await fetch(`https://www.googleapis.com/youtube/v3/search?part=snippet&type=video&maxResults=20&q=${encodeURIComponent(query + "")}&key=${API_KEY}`);
+      const includeKaraoke = document.getElementById("filterKaraoke").checked;
+const finalQuery = includeKaraoke ? query + " karaoke" : query;
+
+const res = await fetch(`https://www.googleapis.com/youtube/v3/search?part=snippet&type=video&maxResults=20&q=${encodeURIComponent(finalQuery)}&key=${API_KEY}`);
+
+//      const res = await fetch(`https://www.googleapis.com/youtube/v3/search?part=snippet&type=video&maxResults=20&q=${encodeURIComponent(query + "")}&key=${API_KEY}`);
       const data = await res.json();
       if(data.items && data.items.length > 0){
         showSearchResults(data.items);
