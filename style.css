@@ -38,7 +38,7 @@
     flex-basis: 25vw;
     height: 85vh;
     padding: 15px 20px;
-    overflow: hidden;
+  overflow-y: auto; /* ✅ tambahkan scroll di sini */
     background-color: inherit;
     color: inherit;
     display: flex;
@@ -75,10 +75,13 @@
 }
 
 
-#searchContainer label {
-  font-size: 0.9em;
-  color: var(--text-color, #333);
+#searchContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 8px;
 }
+
 label input[type="checkbox"] {
   transform: scale(1.2);
   margin-right: 6px;
