@@ -68,10 +68,12 @@
   button:hover {
     background-color: #1976d2;
   }
-  #searchContainer {
-    display: flex;
-    margin-bottom: 8px;
-  }
+#searchContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
 
 #searchContainer label {
   font-size: 0.9em;
