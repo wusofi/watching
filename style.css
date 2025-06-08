@@ -19,7 +19,7 @@
   main {
     display: flex;
     height: 95vh;
-    overflow: hidden;
+  overflow-y: auto; /* Atau 'auto' saja kalau kamu ingin scroll horizontal juga */
   }
   .left-panel {
     flex-basis: 75vw;
